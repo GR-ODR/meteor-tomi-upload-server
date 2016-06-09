@@ -148,7 +148,7 @@ UploadServer = {
 
     // make sure paths are correct
     fs.unlinkSync(path.join(options.uploadDir, filePath));
-    
+
     // unlink all imageVersions also
     if (options.imageVersions) {
     	var subFolders = Object.keys(options.imageVersions);
@@ -488,7 +488,7 @@ UploadHandler.prototype.post = function () {
     // call the feedback within its own fiber
     var formFields = this.formFields;
     Fiber(function () {
-      options.finished(fileInfo, formFields);
+      options.finished(fileInfo, formFields, handler.req);
     }).run();
 
   }).on('aborted', function () {
